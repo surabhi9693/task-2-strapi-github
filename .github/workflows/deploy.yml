@@ -30,5 +30,6 @@ jobs:
           sudo apt install -y git
           git clone https://github.com/surabhi9693/task-2-strapi-github.git
           cd task-2-strapi-github
+          sudo npm install -g strapi@latest
           npm install
           npm run develop
