@@ -28,6 +28,7 @@ jobs:
         script: |
           sudo apt-get update
           sudo apt-get install -y git
+          sudo rm -rf task-2-strapi-github
           git clone https://github.com/surabhi9693/task-2-strapi-github.git
           cd task-2-strapi-github
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
