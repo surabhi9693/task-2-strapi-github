@@ -26,8 +26,8 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}  # Add your EC2 private key as a secret in your repository
         port: ${{ secrets.EC2_SSH_PORT }}   # Optional: adjust port if necessary
         script: |
-          sudo apt update
-          sudo apt install -y git
+          sudo apt-get update
+          sudo apt-get install -y git
           git clone https://github.com/surabhi9693/task-2-strapi-github.git
           cd task-2-strapi-github
           sudo npm install -g strapi@latest
