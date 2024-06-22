@@ -1,9 +1,9 @@
-name: Deploy to AWS EC2
+name: Deploy to EC2 and Start Node.js Application
 
 on:
   push:
     branches:
-      - main  
+      - main  # adjust this to your main branch name
 
 jobs:
   deploy:
@@ -13,20 +13,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Node.js
+    - name: Install Node.js 14
       uses: actions/setup-node@v2
       with:
         node-version: '14'
 
-    - name: SSH into EC2 instance and deploy
+    - name: Connect to EC2 instance and run commands
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.EC2_HOST }}  # EC2 instance public DNS or IP address
-        username: ${{ secrets.EC2_USERNAME }}  # EC2 instance username
-        key: ${{ secrets.EC2_PRIVATE_KEY }}  # Private SSH key for authentication
-        port: ${{ secrets.EC2_PORT }}  # SSH port (usually 22)
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_PRIVATE_KEY }}  # Add your EC2 private key as a secret in your repository
+        port: ${{ secrets.EC2_SSH_PORT }}   # Optional: adjust port if necessary
         script: |
-          cd .  # Replace with your app directory path
-          git pull origin main
+          sudo apt update
+          sudo apt install -y git
+          git clone https://github.com/surabhi9693/task-2-strapi-github.git
           cd task-2-strapi-github
+          npm install
           npm run develop
