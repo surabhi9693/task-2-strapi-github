@@ -3,7 +3,7 @@ name:  Deployment for Strapi API
 on:
   push:
     branches:
-      - surabhi-prod
+      - surabh-prod
 
 
 jobs:
